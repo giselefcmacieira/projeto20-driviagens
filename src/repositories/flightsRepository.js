@@ -9,4 +9,13 @@ function insert(flight){
     )
 }
 
-export const flightsRepository = {insert}
+async function getFlightById(flightId){
+    //flightId = 1
+    const flight = await db.query(
+        `SELECT * FROM "flights" WHERE "id" = $1`, 
+        [flightId]
+    )
+    return flight.rowCount
+}
+
+export const flightsRepository = {insert, getFlightById}

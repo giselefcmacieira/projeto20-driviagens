@@ -11,8 +11,6 @@ async function createFlight(flight){
     //flight = { origin: 1, destination: 5, date: "24-12-2023"}
     const {origin, destination, date} = flight
     dayjs.extend(customParseFormat)
-    console.log(dayjs(date, "DD-MM-YYYY").valueOf())
-    console.log(dayjs().valueOf())
     if(dayjs(date, "DD-MM-YYYY").valueOf() < dayjs().valueOf()){
         throw unprocessableEntityError('Data do voo antes da data atual')
     }

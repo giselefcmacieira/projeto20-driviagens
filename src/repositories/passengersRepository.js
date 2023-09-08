@@ -10,4 +10,13 @@ async function insert(passenger){
     )
 }
 
-export const passengersRepository = {insert}
+async function getPassengerById(passengerId){
+    //passengerId = 1
+    const passenger = await db.query(
+        `SELECT * FROM "passengers" WHERE "id" = $1`, 
+        [passengerId]
+    )
+    return passenger.rowCount
+}
+
+export const passengersRepository = {insert, getPassengerById}
