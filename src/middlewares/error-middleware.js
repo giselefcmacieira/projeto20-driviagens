@@ -14,5 +14,11 @@ export default function errorHandler(error, req, res, next){
     if(error.type === "notFound"){
         return res.status(httpStatus.NOT_FOUND).send(error.message)
     }
+    if(error.type === "badRequest"){
+        return res.status(httpStatus.BAD_REQUEST).send(error.message)
+    }
+    if(error.type === "internalServer"){
+        return res.status(httpStatus.INTERNAL_SERVER_ERROR).send(error.message)
+    }
     res.status(httpStatus.INTERNAL_SERVER_ERROR).send("Foi mal, deu alguma coisa errada com o servidor 😢");
 }

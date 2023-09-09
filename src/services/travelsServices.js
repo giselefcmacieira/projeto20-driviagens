@@ -1,3 +1,4 @@
+import { internalServerError } from "../errors/invernalServer.js"
 import { notFoundError } from "../errors/notFound.js"
 import { flightsRepository } from "../repositories/flightsRepository.js"
 import { passengersRepository } from "../repositories/passengersRepository.js"
@@ -18,4 +19,12 @@ async function createTravel(travel){
     return travelsRepository.insert(travel)
 }
 
-export const travelsServices = { createTravel }
+async function readTravels(passenger){
+    const travels = await travelsRepository.read(passenger)
+    if(travels.qtd > 10){
+        throw internalServerError('Too many requests')
+    }
+    return travels.inf
+}
+
+export const travelsServices = { createTravel, readTravels }

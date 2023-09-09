@@ -8,6 +8,5 @@ export function validateSchema (schema){
             throw invalidBodyError(errors)
         }
     next();
-    //return res.send('foi')
     }
 }
